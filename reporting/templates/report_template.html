@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automation Test Report</title>
+    <style>
+        body {{ font-family: Arial, sans-serif; margin: 40px; background-color: #f9f9f9; }}
+        h1 {{ color: #333; }}
+        h2 {{ margin-top: 40px; }}
+
+        table {{ width: 100%; border-collapse: collapse; margin-bottom: 30px; background-color: #ffffff; }}
+        th, td {{ border: 1px solid #ddd; padding: 8px; text-align: left; }}
+        th {{ background-color: #f2f2f2; }}
+
+        .pass {{ color: green; font-weight: bold; }}
+        .fail {{ color: red; font-weight: bold; }}
+        .skipped {{ color: orange; font-weight: bold; }}
+
+        .summary-box {{
+            background-color: #ffffff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 30px;
+        }}
+
+        .step-table th {{ text-align: center; }}
+        .step-table td {{ text-align: center; }}
+    </style>
+</head>
+<body>
+
+<h1>Automation Execution Report</h1>
+
+<div class="summary-box">
+    <h3>Summary</h3>
+    <p><strong>Total Tests:</strong> {total_tests}</p>
+    <p><strong>Passed Tests:</strong> {passed_tests}</p>
+    <p><strong>Failed Tests:</strong> {failed_tests}</p>
+    <p><strong>Total Steps:</strong> {total_steps}</p>
+    <p><strong>Passed Steps:</strong> {passed_steps}</p>
+    <p><strong>Failed Steps:</strong> {failed_steps}</p>
+    <p><strong>Skipped Steps:</strong> {skipped_steps}</p>
+</div>
+
+{test_details}
+
+</body>
+</html>
