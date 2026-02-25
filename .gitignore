@@ -2,3 +2,5 @@ info.txt
 venv
 reports/*
 !reports/.gitkeep
+screenshots/*
+!screenshots/.gitkeep
