@@ -1,3 +1,4 @@
 info.txt
 venv
-reports/
+reports/*
+!reports/.gitkeep
