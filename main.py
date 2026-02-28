@@ -24,6 +24,12 @@ from modules.POST.test_post import (
     test_TC_POST_002_delete_post
 )
 
+from modules.Store.test_product import test_TC_PRODUCT_001_create_store
+from modules.Product.test_product import (
+    test_TC_PURCHASE_001_purchase_product_via_phonepe,
+    test_TC_PURCHASE_002_cancel_product
+)
+
 MODULE_REGISTRY = {
     "1": {
         "name": "Login",
@@ -39,6 +45,19 @@ MODULE_REGISTRY = {
             {"fn": test_TC_POST_002_delete_post, "setup": None},
         ]
     },
+    "3": {
+        "name": "Store",
+        "tests": [
+            {"fn": test_TC_PRODUCT_001_create_store, "setup": None},
+        ]
+    },
+    "4": {
+        "name": "Product",
+        "tests": [
+            {"fn": test_TC_PURCHASE_001_purchase_product_via_phonepe, "setup": None},
+            {"fn": test_TC_PURCHASE_002_cancel_product, "setup": None}
+        ]
+    }
 }
 # ─────────────────────────────────────────────
 
