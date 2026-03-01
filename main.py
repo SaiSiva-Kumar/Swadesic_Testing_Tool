@@ -29,6 +29,10 @@ from modules.Product.test_product import (
     test_TC_PURCHASE_001_purchase_product_via_phonepe,
     test_TC_PURCHASE_002_cancel_product
 )
+from modules.User.test_user import (
+    test_TC_USER_001_onboard_user_with_email,
+    test_TC_USER_002_update_profile
+)
 
 MODULE_REGISTRY = {
     "1": {
@@ -57,7 +61,14 @@ MODULE_REGISTRY = {
             {"fn": test_TC_PURCHASE_001_purchase_product_via_phonepe, "setup": None},
             {"fn": test_TC_PURCHASE_002_cancel_product, "setup": None}
         ]
-    }
+    },
+    "5": {
+        "name": "User",
+        "tests": [
+            {"fn": test_TC_USER_001_onboard_user_with_email, "setup": None},
+            {"fn": test_TC_USER_002_update_profile, "setup": reset_login_state},
+        ]
+    },
 }
 # ─────────────────────────────────────────────
 
