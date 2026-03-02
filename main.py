@@ -33,6 +33,12 @@ from modules.User.test_user import (
     test_TC_USER_001_onboard_user_with_email,
     test_TC_USER_002_update_profile
 )
+from modules.Search.test_search import (
+    test_TC_SEARCH_001_search_user_and_follow,
+    test_TC_SEARCH_002_ask_question_on_product,
+    test_TC_SEARCH_003_support_store,
+    test_TC_SEARCH_004_comment_on_post
+)
 
 MODULE_REGISTRY = {
     "1": {
@@ -68,6 +74,15 @@ MODULE_REGISTRY = {
             {"fn": test_TC_USER_001_onboard_user_with_email, "setup": None},
             {"fn": test_TC_USER_002_update_profile, "setup": reset_login_state},
         ]
+    },
+    "6": {
+         "name": "Search",
+         "tests": [
+              {"fn": test_TC_SEARCH_001_search_user_and_follow, "setup": None},
+              {"fn": test_TC_SEARCH_002_ask_question_on_product, "setup": None},
+              {"fn": test_TC_SEARCH_003_support_store, "setup": None},
+              {"fn": test_TC_SEARCH_004_comment_on_post, "setup": None}
+         ]
     },
 }
 # ─────────────────────────────────────────────

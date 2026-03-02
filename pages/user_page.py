@@ -8,8 +8,13 @@ def get_next_email():
     return f"test{int(time.time())}@gmail.com"
 class UserPage:
 
-    PROFILE_BUTTON = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.ImageView\").instance(10)")
-    SEE_ALL_OPTIONS = (AppiumBy.ACCESSIBILITY_ID, "See all Options")
+    PROFILE_BUTTON = (
+        AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.ImageView\").instance(10)"
+    )
+
+    SEE_ALL_OPTIONS = (
+        AppiumBy.ACCESSIBILITY_ID, "See all Options"
+    )
     CONTINUE_WITH_EMAIL = (AppiumBy.ACCESSIBILITY_ID, "Continue with Email and OTP")
     EMAIL_INPUT = (AppiumBy.CLASS_NAME, "android.widget.EditText")
     SEND_OTP = (AppiumBy.ACCESSIBILITY_ID, "Send OTP")
