@@ -40,6 +40,8 @@ from modules.Search.test_search import (
     test_TC_SEARCH_004_comment_on_post
 )
 
+from modules.Review.test_review import test_TC_REVIEW_001_create_review_page
+
 MODULE_REGISTRY = {
     "1": {
         "name": "Login",
@@ -84,6 +86,12 @@ MODULE_REGISTRY = {
               {"fn": test_TC_SEARCH_004_comment_on_post, "setup": None}
          ]
     },
+    "7": {
+        "name": "Review",
+        "tests": [
+            {"fn": test_TC_REVIEW_001_create_review_page, "setup": None},
+        ]
+    }
 }
 # ─────────────────────────────────────────────
 

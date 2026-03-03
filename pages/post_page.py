@@ -5,14 +5,14 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class PostPage:
 
-    CREATE_BUTTON = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.ImageView\").instance(8)")
+    CREATE_BUTTON = (AppiumBy.XPATH, "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[4]")
     ADD_PHOTOS = (AppiumBy.ACCESSIBILITY_ID, "Add photos (up to 5)")
     UPLOAD_PHOTOS = (AppiumBy.ACCESSIBILITY_ID, "Upload photos from your phone")
     PHOTO_INSTANCE_18 = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(18)")
     PHOTO_INSTANCE_25 = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(25)")
     PHOTO_INSTANCE_32 = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(32)")
     PHOTO_INSTANCE_39 = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(39)")
-    PHOTO_CONFIRM = (AppiumBy.ACCESSIBILITY_ID, "Photo taken on Feb 22, 2026 4:11 PM")
+    # PHOTO_CONFIRM = (AppiumBy.ACCESSIBILITY_ID, "Photo taken on Feb 22, 2026 4:11 PM")
     CONFIRM_BUTTON = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.Button\").instance(6)")
     ADD_VIDEO = (AppiumBy.ACCESSIBILITY_ID, "Add a video")
     UPLOAD_FROM_GALLERY = (AppiumBy.ACCESSIBILITY_ID, "Upload from Gallery")
@@ -45,7 +45,7 @@ class PostPage:
         self.wait.until(EC.element_to_be_clickable(self.PHOTO_INSTANCE_25)).click()
         self.wait.until(EC.element_to_be_clickable(self.PHOTO_INSTANCE_32)).click()
         self.wait.until(EC.element_to_be_clickable(self.PHOTO_INSTANCE_39)).click()
-        self.wait.until(EC.element_to_be_clickable(self.PHOTO_CONFIRM)).click()
+        # self.wait.until(EC.element_to_be_clickable(self.PHOTO_CONFIRM)).click()
         self.wait.until(EC.element_to_be_clickable(self.CONFIRM_BUTTON)).click()
 
     def click_add_video(self):
