@@ -1,4 +1,4 @@
-from pages.review_page import ReviewPage
+from pages.review_page import ReviewPage, get_update_name
 from reporting.result_models import TestResult
 from reporting.step_executor import StepExecutor
 
@@ -74,6 +74,77 @@ def test_TC_REVIEW_001_create_review_page(driver):
     executor.step(
         "Click on Create your review page button",
         review_page.click_create_review_page_button
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result
+
+def test_TC_REVIEW_002_update_review_page(driver):
+    """
+    Test Case ID: TC_REVIEW_002
+    Title: Update a Review Page
+
+    Objective:
+    To verify that a user can successfully update a review page
+    by changing the page name.
+
+    Test Steps:
+    1. Click on Switch Profile tab.
+    2. Choose required Review Page tab.
+    3. Click on Settings button.
+    4. Click on Edit Page.
+    5. Enter updated name in Name of your review page input field.
+    6. Click on Update the review page button.
+
+    Expected Result:
+    Review page is updated successfully with the new name.
+    """
+
+    test_result = TestResult(
+        test_id="TC_REVIEW_002",
+        title="Update a Review Page",
+        page_name="review_page"
+    )
+
+    review_page = ReviewPage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on Switch Profile tab",
+        review_page.click_switch_profile_tab
+    )
+
+    executor.step(
+        "Choose required Review Page tab",
+        review_page.click_review_page_tab
+    )
+
+    executor.step(
+        "Click on Settings button",
+        review_page.click_settings_button
+    )
+
+    executor.step(
+        "Click on Edit Page",
+        review_page.click_edit_page
+    )
+
+    executor.step(
+        "Enter updated name in review page input field",
+        lambda: review_page.enter_update_page_name(get_update_name())
+    )
+
+    executor.step(
+        "Click on Update the review page button",
+        review_page.click_update_review_page_button
     )
 
     if executor.failed:

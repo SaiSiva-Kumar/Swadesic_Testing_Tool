@@ -1,7 +1,10 @@
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
+def get_update_name():
+    return f"update test {int(time.time())}"
 
 class ReviewPage:
 
@@ -18,6 +21,13 @@ class ReviewPage:
     ADD_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Add")
     STORE_LINK_INPUT = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(1)")
     CREATE_REVIEW_PAGE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Create your review page")
+    SWITCH_PROFILE_TAB = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(8)")
+    REVIEW_PAGE_TAB = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().description(\"update test\n0.0 (0 reviews)\")")
+    SETTINGS_BUTTON = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(8)")
+    EDIT_PAGE = (AppiumBy.ACCESSIBILITY_ID, "Edit Page")
+    UPDATE_PAGE_NAME_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(0)")
+    UPDATE_REVIEW_PAGE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Update the review page")
 
     def __init__(self, driver):
         self.driver = driver
@@ -57,3 +67,24 @@ class ReviewPage:
 
     def click_create_review_page_button(self):
         self.wait.until(EC.element_to_be_clickable(self.CREATE_REVIEW_PAGE_BUTTON)).click()
+
+    def click_switch_profile_tab(self):
+        self.wait.until(EC.element_to_be_clickable(self.SWITCH_PROFILE_TAB)).click()
+
+    def click_review_page_tab(self):
+        self.wait.until(EC.element_to_be_clickable(self.REVIEW_PAGE_TAB)).click()
+
+    def click_settings_button(self):
+        self.wait.until(EC.element_to_be_clickable(self.SETTINGS_BUTTON)).click()
+
+    def click_edit_page(self):
+        self.wait.until(EC.element_to_be_clickable(self.EDIT_PAGE)).click()
+
+    def enter_update_page_name(self, name):
+        field = self.wait.until(EC.element_to_be_clickable(self.UPDATE_PAGE_NAME_INPUT))
+        field.click()
+        field.clear()
+        field.send_keys(name)
+
+    def click_update_review_page_button(self):
+        self.wait.until(EC.element_to_be_clickable(self.UPDATE_REVIEW_PAGE_BUTTON)).click()

@@ -40,7 +40,10 @@ from modules.Search.test_search import (
     test_TC_SEARCH_004_comment_on_post
 )
 
-from modules.Review.test_review import test_TC_REVIEW_001_create_review_page
+from modules.Review.test_review import (
+    test_TC_REVIEW_001_create_review_page,
+    test_TC_REVIEW_002_update_review_page
+)
 
 MODULE_REGISTRY = {
     "1": {
@@ -90,6 +93,7 @@ MODULE_REGISTRY = {
         "name": "Review",
         "tests": [
             {"fn": test_TC_REVIEW_001_create_review_page, "setup": None},
+            {"fn": test_TC_REVIEW_002_update_review_page, "setup": None}
         ]
     }
 }
