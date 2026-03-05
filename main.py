@@ -44,6 +44,12 @@ from modules.Review.test_review import (
     test_TC_REVIEW_001_create_review_page,
     test_TC_REVIEW_002_update_review_page
 )
+from modules.UserActivity.test_userActivity import (
+    test_TC_USERACTIVITY_001_update_personal_information,
+    test_TC_USERACTIVITY_002_change_theme_color,
+    test_TC_USERACTIVITY_003_app_and_security_functionality
+)
+
 
 MODULE_REGISTRY = {
     "1": {
@@ -95,7 +101,15 @@ MODULE_REGISTRY = {
             {"fn": test_TC_REVIEW_001_create_review_page, "setup": None},
             {"fn": test_TC_REVIEW_002_update_review_page, "setup": None}
         ]
-    }
+    },
+    "8": {
+        "name": "User Activity",
+        "tests": [
+            {"fn": test_TC_USERACTIVITY_001_update_personal_information, "setup": None},
+            {"fn": test_TC_USERACTIVITY_002_change_theme_color, "setup": None},
+            {"fn": test_TC_USERACTIVITY_003_app_and_security_functionality, "setup": None}
+        ]
+    },
 }
 # ─────────────────────────────────────────────
 
