@@ -1,11 +1,13 @@
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 
 class StorePage:
 
-    PROFILE_BUTTON = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.ImageView\").instance(10)")
+    PROFILE_BUTTON = (AppiumBy.XPATH,
+                      "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]")
     CREATE_STORE = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().description(\"Create store\")")
     START_NOW = (AppiumBy.ACCESSIBILITY_ID, "Start now")
     GET_STARTED = (AppiumBy.ACCESSIBILITY_ID, "Get started")
@@ -21,12 +23,47 @@ class StorePage:
     PROFILE_PHOTO = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(18)")
     PHOTO_INSTANCE_18 = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.Button\").instance(6)")
     CROP_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Crop")
-    NEXT_BUTTON = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().description(\"Next\")")
+    # NEXT_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Next")
     ABOUT_BUSINESS_INPUT = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(0)")
     WEBSITE_LINK_INPUT = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(1)")
     STORE_HANDLE_INPUT = (AppiumBy.CLASS_NAME, "android.widget.EditText")
     STORE_HANDLE_AVAILABLE = (AppiumBy.ACCESSIBILITY_ID, "test_store1 is available")
     CREATE_STORE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Create The Store")
+    FINISH_SETUP = (AppiumBy.ANDROID_UIAUTOMATOR,
+                    "new UiSelector().description(\"Finish Setup & Start Sharing\nComplete your store so people with your StoreLink can see it instantly.\n50%\")")
+    REVIEW_TRUST_CENTER = (AppiumBy.ACCESSIBILITY_ID, "Review Trust Center")
+    PHONE_INPUT = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(0)")
+    EMAIL_INPUT = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(1)")
+    SAVE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "save")
+    ONLINE_ONLY = (AppiumBy.ACCESSIBILITY_ID, "It's online only")
+    AREA_OF_OPERATIONS_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(0)")
+    SELECT_CITY_DROPDOWN = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(15)")
+    ADILABAD = (AppiumBy.ACCESSIBILITY_ID, "Adilabad")
+    PINCODE_INPUT_1 = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(1)")
+    STATE_DROPDOWN = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(16)")
+    ANDHRA_PRADESH = (AppiumBy.ACCESSIBILITY_ID, "Andhra Pradesh")
+    CITY_DROPDOWN_1 = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(20)")
+    AMLAPURAM = (AppiumBy.ACCESSIBILITY_ID, "Amlapuram")
+    LOCALITY_DROPDOWN = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(17)")
+    LOCALITY_SEARCH_ICON = (AppiumBy.CLASS_NAME, "android.widget.ImageView")
+    LOCALITY_SEARCH_INPUT = (AppiumBy.CLASS_NAME, "android.widget.ImageView")
+    ADD_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Add")
+    PLACE_DROPDOWN = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(18)")
+    PLACE_SEARCH_ICON = (AppiumBy.CLASS_NAME, "android.widget.ImageView")
+    PLACE_SEARCH_INPUT = (AppiumBy.CLASS_NAME, "android.widget.ImageView")
+    PINCODE_INPUT_2 = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(2)")
+    INDIVIDUAL_TICKBOX = (AppiumBy.ACCESSIBILITY_ID, "Individual")
+    PAN_INPUT = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(0)")
+    PAN_NAME_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(1)")
+    DATE_OF_BIRTH = (AppiumBy.ACCESSIBILITY_ID, "DD / MM / YYYY")
+    OK_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "OK")
+    ADD_SIGNATURE = (AppiumBy.ACCESSIBILITY_ID, "Add signature")
+    REQUEST_VERIFICATION = (AppiumBy.ACCESSIBILITY_ID, "Request verification")
 
     def __init__(self, driver):
         self.driver = driver
@@ -71,10 +108,11 @@ class StorePage:
         self.wait.until(EC.element_to_be_clickable(self.PHOTO_INSTANCE_18)).click()
         self.wait.until(EC.element_to_be_clickable(self.CROP_BUTTON)).click()
 
-    def click_next(self):
-        self.wait.until(EC.element_to_be_clickable(self.NEXT_BUTTON)).click()
+    # def click_next(self):
+    #     self.wait.until(EC.element_to_be_clickable(self.NEXT_BUTTON)).click()
 
     def enter_about_business(self, text):
+        time.sleep(3)
         field = self.wait.until(EC.element_to_be_clickable(self.ABOUT_BUSINESS_INPUT))
         field.click()
         field.send_keys(text)
@@ -85,6 +123,7 @@ class StorePage:
         field.send_keys(url)
 
     def enter_store_handle(self, handle):
+        time.sleep(3)
         field = self.wait.until(EC.element_to_be_clickable(self.STORE_HANDLE_INPUT))
         field.click()
         field.send_keys(handle)
@@ -94,3 +133,97 @@ class StorePage:
 
     def click_create_the_store(self):
         self.wait.until(EC.element_to_be_clickable(self.CREATE_STORE_BUTTON)).click()
+
+    def click_finish_setup(self):
+        self.wait.until(EC.element_to_be_clickable(self.FINISH_SETUP)).click()
+
+    def click_review_trust_center(self):
+        self.wait.until(EC.element_to_be_clickable(self.REVIEW_TRUST_CENTER)).click()
+
+    def enter_phone(self, phone):
+        time.sleep(2)
+        field = self.wait.until(EC.element_to_be_clickable(self.PHONE_INPUT))
+        field.click()
+        field.send_keys(phone)
+
+    def enter_email(self, email):
+        field = self.wait.until(EC.element_to_be_clickable(self.EMAIL_INPUT))
+        field.click()
+        field.send_keys(email)
+
+    def click_save(self):
+        self.wait.until(EC.element_to_be_clickable(self.SAVE_BUTTON)).click()
+
+    def click_online_only(self):
+        time.sleep(2)
+        self.wait.until(EC.element_to_be_clickable(self.ONLINE_ONLY)).click()
+
+    def enter_area_of_operations(self, text):
+        field = self.wait.until(EC.element_to_be_clickable(self.AREA_OF_OPERATIONS_INPUT))
+        field.click()
+        field.send_keys(text)
+
+    def select_city_adilabad(self):
+        self.wait.until(EC.element_to_be_clickable(self.SELECT_CITY_DROPDOWN)).click()
+        self.wait.until(EC.element_to_be_clickable(self.ADILABAD)).click()
+
+    def enter_pincode_1(self, pincode):
+        field = self.wait.until(EC.element_to_be_clickable(self.PINCODE_INPUT_1))
+        field.click()
+        field.send_keys(pincode)
+
+    def select_state_andhra_pradesh(self):
+        self.wait.until(EC.element_to_be_clickable(self.STATE_DROPDOWN)).click()
+        self.wait.until(EC.element_to_be_clickable(self.ANDHRA_PRADESH)).click()
+
+    def select_city_amlapuram(self):
+        self.wait.until(EC.element_to_be_clickable(self.CITY_DROPDOWN_1)).click()
+        self.wait.until(EC.element_to_be_clickable(self.AMLAPURAM)).click()
+
+    def select_locality(self, text):
+        self.wait.until(EC.element_to_be_clickable(self.LOCALITY_DROPDOWN)).click()
+        self.wait.until(EC.element_to_be_clickable(self.LOCALITY_SEARCH_ICON)).click()
+        field = self.wait.until(EC.element_to_be_clickable(self.LOCALITY_SEARCH_INPUT))
+        field.click()
+        field.send_keys(text)
+        self.wait.until(EC.element_to_be_clickable(self.ADD_BUTTON)).click()
+
+    def select_place(self, text):
+        self.wait.until(EC.element_to_be_clickable(self.PLACE_DROPDOWN)).click()
+        self.wait.until(EC.element_to_be_clickable(self.PLACE_SEARCH_ICON)).click()
+        field = self.wait.until(EC.element_to_be_clickable(self.PLACE_SEARCH_INPUT))
+        field.click()
+        field.send_keys(text)
+        self.wait.until(EC.element_to_be_clickable(self.ADD_BUTTON)).click()
+
+    def enter_pincode_2(self, pincode):
+        field = self.wait.until(EC.element_to_be_clickable(self.PINCODE_INPUT_2))
+        field.click()
+        field.send_keys(pincode)
+
+    def click_individual_tickbox(self):
+        time.sleep(2)
+        self.wait.until(EC.element_to_be_clickable(self.INDIVIDUAL_TICKBOX)).click()
+
+    def enter_pan(self, pan):
+        field = self.wait.until(EC.element_to_be_clickable(self.PAN_INPUT))
+        field.click()
+        field.send_keys(pan)
+
+    def enter_pan_name(self, name):
+        field = self.wait.until(EC.element_to_be_clickable(self.PAN_NAME_INPUT))
+        field.click()
+        field.send_keys(name)
+
+    def click_date_of_birth(self):
+        self.wait.until(EC.element_to_be_clickable(self.DATE_OF_BIRTH)).click()
+
+    def click_ok(self):
+        self.wait.until(EC.element_to_be_clickable(self.OK_BUTTON)).click()
+
+    def click_add_signature(self):
+        self.wait.until(EC.element_to_be_clickable(self.ADD_SIGNATURE)).click()
+
+    def click_request_verification(self):
+        time.sleep(2)
+        self.wait.until(EC.element_to_be_clickable(self.REQUEST_VERIFICATION)).click()

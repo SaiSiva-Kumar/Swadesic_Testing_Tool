@@ -204,3 +204,74 @@ def test_TC_USERACTIVITY_003_app_and_security_functionality(driver):
     )
 
     return test_result
+
+def test_TC_USERACTIVITY_004_save_and_repost_user_post(driver):
+    """
+    Test Case ID: TC_USERACTIVITY_004
+    Title: Save and Repost Another User Post
+
+    Objective:
+    To verify that a user can successfully search for another user,
+    navigate to their profile, repost and save their post.
+
+    Test Steps:
+    1. Click on Search button.
+    2. Click on Search input field and provide krishna as input.
+    3. Click on People tab.
+    4. Click on Profile.
+    5. Click on Repost.
+    6. Click on Saved.
+
+    Expected Result:
+    Post is reposted and saved successfully.
+    """
+
+    test_result = TestResult(
+        test_id="TC_USERACTIVITY_004",
+        title="Save and Repost Another User Post",
+        page_name="userActivity_page"
+    )
+
+    user_activity_page = UserActivityPage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on Search button",
+        user_activity_page.click_search_button
+    )
+
+    executor.step(
+        "Click on Search input field and provide krishna as input",
+        lambda: user_activity_page.enter_search_input("krishna")
+    )
+
+    executor.step(
+        "Click on People tab",
+        user_activity_page.click_people_tab
+    )
+
+    executor.step(
+        "Click on Profile",
+        user_activity_page.click_user_profile
+    )
+
+    executor.step(
+        "Click on Repost",
+        user_activity_page.click_repost
+    )
+
+    executor.step(
+        "Click on Saved",
+        user_activity_page.click_saved
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result

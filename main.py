@@ -19,12 +19,17 @@ from modules.login.test_login import (
     test_TC_LOGIN_002_send_otp_without_email,
     reset_login_state
 )
+
 from modules.POST.test_post import (
     test_TC_POST_001_create_post_with_media_and_tag,
     test_TC_POST_002_delete_post
 )
 
-from modules.Store.test_product import test_TC_PRODUCT_001_create_store
+from modules.Store.test_product import (
+    test_TC_PRODUCT_001_create_store,
+    test_TC_STORE_002_store_verification
+)
+
 from modules.Product.test_product import (
     test_TC_PURCHASE_001_purchase_product_via_phonepe,
     test_TC_PURCHASE_002_cancel_product
@@ -33,6 +38,7 @@ from modules.User.test_user import (
     test_TC_USER_001_onboard_user_with_email,
     test_TC_USER_002_update_profile
 )
+
 from modules.Search.test_search import (
     test_TC_SEARCH_001_search_user_and_follow,
     test_TC_SEARCH_002_ask_question_on_product,
@@ -44,10 +50,12 @@ from modules.Review.test_review import (
     test_TC_REVIEW_001_create_review_page,
     test_TC_REVIEW_002_update_review_page
 )
+
 from modules.UserActivity.test_userActivity import (
     test_TC_USERACTIVITY_001_update_personal_information,
     test_TC_USERACTIVITY_002_change_theme_color,
-    test_TC_USERACTIVITY_003_app_and_security_functionality
+    test_TC_USERACTIVITY_003_app_and_security_functionality,
+    test_TC_USERACTIVITY_004_save_and_repost_user_post
 )
 
 
@@ -70,6 +78,7 @@ MODULE_REGISTRY = {
         "name": "Store",
         "tests": [
             {"fn": test_TC_PRODUCT_001_create_store, "setup": None},
+            {"fn": test_TC_STORE_002_store_verification, "setup": None}
         ]
     },
     "4": {
@@ -107,7 +116,8 @@ MODULE_REGISTRY = {
         "tests": [
             {"fn": test_TC_USERACTIVITY_001_update_personal_information, "setup": None},
             {"fn": test_TC_USERACTIVITY_002_change_theme_color, "setup": None},
-            {"fn": test_TC_USERACTIVITY_003_app_and_security_functionality, "setup": None}
+            {"fn": test_TC_USERACTIVITY_003_app_and_security_functionality, "setup": None},
+            {"fn": test_TC_USERACTIVITY_004_save_and_repost_user_post, "setup": None}
         ]
     },
 }
