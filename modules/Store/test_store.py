@@ -295,3 +295,105 @@ def test_TC_STORE_002_store_verification(driver):
     )
 
     return test_result
+
+def test_TC_STORE_003_create_product(driver):
+    """
+    Test Case ID: TC_STORE_003
+    Title: Store Owner Create Product
+
+    Objective:
+    To verify that a store owner can successfully create a product
+    by providing all required details including media, basic details,
+    inventory, pricing, and origin information.
+
+    Test Steps:
+    1. Click on Plus button.
+    2. Click on Add Product.
+    3. Upload product video from local.
+    4. Upload product image from local.
+    5. Click on Basic Details and fill brand name, product name, category and description as test.
+    6. Click on Back.
+    7. Click on Inventory and Pricing and fill stock as 25, MRP as 50, selling price as 50.
+    8. Click on Back.
+    9. Click on Origin and Transparency and select Manufactured, India for all country fields.
+    10. Click on Next.
+    11. Click on Publish.
+
+    Expected Result:
+    Product is created and published successfully.
+    """
+
+    test_result = TestResult(
+        test_id="TC_STORE_003",
+        title="Store Owner Create Product",
+        page_name="store_page"
+    )
+
+    store_page = StorePage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on Plus button",
+        store_page.click_plus_button
+    )
+
+    executor.step(
+        "Click on Add Product",
+        store_page.click_add_product
+    )
+
+    executor.step(
+        "Upload product video from local",
+        store_page.upload_product_video
+    )
+
+    executor.step(
+        "Upload product image from local",
+        store_page.upload_product_image
+    )
+
+    executor.step(
+        "Fill Basic Details",
+        lambda: store_page.fill_basic_details("test", "test", "test")
+    )
+
+    executor.step(
+        "Click on Back",
+        store_page.click_basic_details_back
+    )
+
+    executor.step(
+        "Fill Inventory and Pricing",
+        lambda: store_page.fill_inventory_and_pricing("25", "50", "50")
+    )
+
+    executor.step(
+        "Click on Back",
+        store_page.click_inventory_back
+    )
+
+    executor.step(
+        "Fill Origin and Transparency",
+        store_page.fill_origin_and_transparency
+    )
+
+    executor.step(
+        "Click on Next",
+        store_page.click_next_product
+    )
+
+    executor.step(
+        "Click on Publish",
+        store_page.click_publish
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result

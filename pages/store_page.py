@@ -64,6 +64,52 @@ class StorePage:
     OK_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "OK")
     ADD_SIGNATURE = (AppiumBy.ACCESSIBILITY_ID, "Add signature")
     REQUEST_VERIFICATION = (AppiumBy.ACCESSIBILITY_ID, "Request verification")
+    PLUS_BUTTON = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.ImageView\").instance(25)")
+    ADD_PRODUCT = (AppiumBy.ACCESSIBILITY_ID, "Add a product")
+    VIDEO_SECTION = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(15)")
+    UPLOAD_FROM_GALLERY = (AppiumBy.ACCESSIBILITY_ID, "Upload from Gallery")
+    VIDEO_INSTANCE_23 = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(23)")
+    VIDEO_CONFIRM_BUTTON = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.Button\").instance(6)")
+    CONTINUE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Continue")
+    IMAGE_SECTION = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(15)")
+    UPLOAD_PHOTOS = (AppiumBy.ACCESSIBILITY_ID, "Upload photos from your phone")
+    IMAGE_INSTANCE_18 = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(18)")
+    IMAGE_CONFIRM_BUTTON = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.Button\").instance(6)")
+    BASIC_DETAILS = (AppiumBy.ANDROID_UIAUTOMATOR,
+                     "new UiSelector().description(\"Basic Details\nBrand, product name, category, and description.\")")
+    BRAND_NAME_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(0)")
+    PRODUCT_NAME_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(1)")
+    PRODUCT_CATEGORY_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(2)")
+    PRODUCT_DESCRIPTION_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(3)")
+    BASIC_DETAILS_BACK = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(7)")
+    INVENTORY_AND_PRICING = (AppiumBy.ANDROID_UIAUTOMATOR,
+                             "new UiSelector().description(\"Inventory & Pricing\nAdd variants (if any), set MRP, selling price, and stock.\")")
+    IN_STOCK_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(0)")
+    MRP_INPUT = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(1)")
+    SELLING_PRICE_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(2)")
+    INVENTORY_SAVE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "save")
+    INVENTORY_BACK = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(8)")
+    ORIGIN_AND_TRANSPARENCY = (AppiumBy.ANDROID_UIAUTOMATOR,
+                               "new UiSelector().description(\"Origin & Transparency\nOrigin & Transparency help consumers understand and make informed decisions.\")")
+    MANUFACTURED_DROPDOWN = (AppiumBy.ACCESSIBILITY_ID, "Manufactured")
+    MANUFACTURED_OPTION = (AppiumBy.ACCESSIBILITY_ID, "Manufactured")
+    SELECT_COUNTRY_0 = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().description(\"Select country\").instance(0)")
+    INDIA = (AppiumBy.ACCESSIBILITY_ID, "India")
+    SELECT_COUNTRIES = (AppiumBy.ACCESSIBILITY_ID, "Select countries")
+    DONE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Done")
+    SELECT_COUNTRY = (AppiumBy.ACCESSIBILITY_ID, "Select country")
+    ORIGIN_SAVE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Save")
+    NEXT_PRODUCT_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Next")
+    PUBLISH_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Publish")
 
     def __init__(self, driver):
         self.driver = driver
@@ -227,3 +273,72 @@ class StorePage:
     def click_request_verification(self):
         time.sleep(2)
         self.wait.until(EC.element_to_be_clickable(self.REQUEST_VERIFICATION)).click()
+
+    def click_plus_button(self):
+        self.wait.until(EC.element_to_be_clickable(self.PLUS_BUTTON)).click()
+
+    def click_add_product(self):
+        self.wait.until(EC.element_to_be_clickable(self.ADD_PRODUCT)).click()
+
+    def upload_product_video(self):
+        self.wait.until(EC.element_to_be_clickable(self.VIDEO_SECTION)).click()
+        self.wait.until(EC.element_to_be_clickable(self.UPLOAD_FROM_GALLERY)).click()
+        self.wait.until(EC.element_to_be_clickable(self.VIDEO_INSTANCE_23)).click()
+        self.wait.until(EC.element_to_be_clickable(self.VIDEO_CONFIRM_BUTTON)).click()
+        self.wait.until(EC.element_to_be_clickable(self.CONTINUE_BUTTON)).click()
+
+    def upload_product_image(self):
+        self.wait.until(EC.element_to_be_clickable(self.IMAGE_SECTION)).click()
+        self.wait.until(EC.element_to_be_clickable(self.UPLOAD_PHOTOS)).click()
+        self.wait.until(EC.element_to_be_clickable(self.IMAGE_INSTANCE_18)).click()
+        self.wait.until(EC.element_to_be_clickable(self.IMAGE_CONFIRM_BUTTON)).click()
+
+    def fill_basic_details(self, brand, product_name, category):
+        self.wait.until(EC.element_to_be_clickable(self.BASIC_DETAILS)).click()
+        field = self.wait.until(EC.element_to_be_clickable(self.BRAND_NAME_INPUT))
+        field.click()
+        field.send_keys(brand)
+        field = self.wait.until(EC.element_to_be_clickable(self.PRODUCT_NAME_INPUT))
+        field.click()
+        field.send_keys(product_name)
+        field = self.wait.until(EC.element_to_be_clickable(self.PRODUCT_CATEGORY_INPUT))
+        field.click()
+        field.send_keys(category)
+    def click_basic_details_back(self):
+        time.sleep(5)
+        self.wait.until(EC.element_to_be_clickable(self.BASIC_DETAILS_BACK)).click()
+
+    def fill_inventory_and_pricing(self, stock, mrp, selling_price):
+        self.wait.until(EC.element_to_be_clickable(self.INVENTORY_AND_PRICING)).click()
+        field = self.wait.until(EC.element_to_be_clickable(self.IN_STOCK_INPUT))
+        field.click()
+        field.send_keys(stock)
+        field = self.wait.until(EC.element_to_be_clickable(self.MRP_INPUT))
+        field.click()
+        field.send_keys(mrp)
+        field = self.wait.until(EC.element_to_be_clickable(self.SELLING_PRICE_INPUT))
+        field.click()
+        field.send_keys(selling_price)
+        self.wait.until(EC.element_to_be_clickable(self.INVENTORY_SAVE_BUTTON)).click()
+
+    def click_inventory_back(self):
+        self.wait.until(EC.element_to_be_clickable(self.INVENTORY_BACK)).click()
+
+    def fill_origin_and_transparency(self):
+        self.wait.until(EC.element_to_be_clickable(self.ORIGIN_AND_TRANSPARENCY)).click()
+        self.wait.until(EC.element_to_be_clickable(self.MANUFACTURED_DROPDOWN)).click()
+        self.wait.until(EC.element_to_be_clickable(self.MANUFACTURED_OPTION)).click()
+        self.wait.until(EC.element_to_be_clickable(self.SELECT_COUNTRY_0)).click()
+        self.wait.until(EC.element_to_be_clickable(self.INDIA)).click()
+        self.wait.until(EC.element_to_be_clickable(self.SELECT_COUNTRIES)).click()
+        self.wait.until(EC.element_to_be_clickable(self.INDIA)).click()
+        self.wait.until(EC.element_to_be_clickable(self.DONE_BUTTON)).click()
+        self.wait.until(EC.element_to_be_clickable(self.SELECT_COUNTRY)).click()
+        self.wait.until(EC.element_to_be_clickable(self.INDIA)).click()
+        self.wait.until(EC.element_to_be_clickable(self.ORIGIN_SAVE_BUTTON)).click()
+
+    def click_next_product(self):
+        self.wait.until(EC.element_to_be_clickable(self.NEXT_PRODUCT_BUTTON)).click()
+
+    def click_publish(self):
+        self.wait.until(EC.element_to_be_clickable(self.PUBLISH_BUTTON)).click()

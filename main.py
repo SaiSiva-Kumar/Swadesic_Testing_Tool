@@ -25,9 +25,10 @@ from modules.POST.test_post import (
     test_TC_POST_002_delete_post
 )
 
-from modules.Store.test_product import (
+from modules.Store.test_store import (
     test_TC_PRODUCT_001_create_store,
-    test_TC_STORE_002_store_verification
+    test_TC_STORE_002_store_verification,
+    test_TC_STORE_003_create_product
 )
 
 from modules.Product.test_product import (
@@ -78,7 +79,8 @@ MODULE_REGISTRY = {
         "name": "Store",
         "tests": [
             {"fn": test_TC_PRODUCT_001_create_store, "setup": None},
-            {"fn": test_TC_STORE_002_store_verification, "setup": None}
+            {"fn": test_TC_STORE_002_store_verification, "setup": None},
+            {"fn": test_TC_STORE_003_create_product, "setup": None},
         ]
     },
     "4": {
@@ -269,11 +271,29 @@ def run():
             if not selected_module:
                 break
 
-            show_tests(selected_module)
-            selected_tests = select_tests(selected_module)
-            test_results = execute_tests(driver, selected_module, selected_tests)
-            generate_report(test_results)
-            print_report_link()
+            while True:
+                show_tests(selected_module)
+                choice = input("Enter test numbers to run (comma separated), 'all' to run all, or 'back' to go back to modules: ").strip()
+
+                if choice.lower() == "back":
+                    break
+
+                if choice.lower() == "all":
+                    selected_tests = selected_module["tests"]
+                else:
+                    try:
+                        indices = [int(i.strip()) for i in choice.split(",")]
+                        selected_tests = [selected_module["tests"][i - 1] for i in indices if 1 <= i <= len(selected_module["tests"])]
+                        if not selected_tests:
+                            print("No valid selections. Please try again.")
+                            continue
+                    except Exception:
+                        print("Invalid input. Please try again.")
+                        continue
+
+                test_results = execute_tests(driver, selected_module, selected_tests)
+                generate_report(test_results)
+                print_report_link()
 
     finally:
         if driver:
