@@ -110,6 +110,28 @@ class StorePage:
     ORIGIN_SAVE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Save")
     NEXT_PRODUCT_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Next")
     PUBLISH_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Publish")
+    ALL_ORDERS = (AppiumBy.ACCESSIBILITY_ID, "All orders")
+    # ORDER_ITEM_DELIVERY = (AppiumBy.ACCESSIBILITY_ID, "test345\n₹50\n08-03-2026 6:43 PM\n1 item\nSuborders: 1 waiting")
+    CONFIRM_ALL = (AppiumBy.ACCESSIBILITY_ID, "Confirm all")
+    CONFIRM_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Confirm")
+    ALL_TAB = (AppiumBy.ACCESSIBILITY_ID, "All")
+    START_SHIPPING_ALL = (AppiumBy.ACCESSIBILITY_ID, "Start shipping all")
+    SHIP_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Ship")
+    LOGISTICS_PARTNER_DROPDOWN = (
+    AppiumBy.XPATH, "//android.widget.ScrollView/android.widget.ImageView[5]/android.view.View")
+    LOGISTICS_4PX = (AppiumBy.ACCESSIBILITY_ID, "4PX")
+    TRACKING_NUMBER_INPUT = (AppiumBy.XPATH, "//android.widget.ScrollView/android.widget.EditText[2]")
+    ADDITIONAL_NOTES_INPUT = (AppiumBy.XPATH, "//android.widget.ScrollView/android.widget.EditText[3]")
+    MARK_AS_SHIPPED = (AppiumBy.ACCESSIBILITY_ID, "Mark as Shipped")
+    UPDATE_DELIVERY_STATUS = (AppiumBy.ACCESSIBILITY_ID, "Update delivery status")
+    MARK_AS_DELIVERED = (AppiumBy.ACCESSIBILITY_ID, "Mark as Delivered")
+    CANCEL_ALL = (AppiumBy.ACCESSIBILITY_ID, "Cancel all")
+    CANCEL_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Cancel")
+    CANCEL_REASON_INPUT = (AppiumBy.CLASS_NAME, "android.widget.EditText")
+    DONE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Done")
+    ACCOUNT_BALANCE = (AppiumBy.ACCESSIBILITY_ID, "Account balance")
+    SEND_NOW_INPUT = (AppiumBy.CLASS_NAME, "android.widget.EditText")
+    SEND_TO_PRIMARY_ACCOUNT = (AppiumBy.ACCESSIBILITY_ID, "Send ₹10 to Primary Account")
 
     def __init__(self, driver):
         self.driver = driver
@@ -342,3 +364,72 @@ class StorePage:
 
     def click_publish(self):
         self.wait.until(EC.element_to_be_clickable(self.PUBLISH_BUTTON)).click()
+
+    def click_all_orders(self):
+        self.wait.until(EC.element_to_be_clickable(self.ALL_ORDERS)).click()
+
+    # def click_order_item_delivery(self):
+    #     self.wait.until(EC.element_to_be_clickable(self.ORDER_ITEM_DELIVERY)).click()
+
+    def click_confirm_all(self):
+        self.wait.until(EC.element_to_be_clickable(self.CONFIRM_ALL)).click()
+
+    def click_confirm(self):
+        self.wait.until(EC.element_to_be_clickable(self.CONFIRM_BUTTON)).click()
+
+    def click_all_tab(self):
+        self.wait.until(EC.element_to_be_clickable(self.ALL_TAB)).click()
+
+    def click_start_shipping_all(self):
+        self.wait.until(EC.element_to_be_clickable(self.START_SHIPPING_ALL)).click()
+
+    def click_ship(self):
+        self.wait.until(EC.element_to_be_clickable(self.SHIP_BUTTON)).click()
+
+    def select_logistics_partner(self):
+        self.wait.until(EC.element_to_be_clickable(self.LOGISTICS_PARTNER_DROPDOWN)).click()
+        self.wait.until(EC.element_to_be_clickable(self.LOGISTICS_4PX)).click()
+
+    def enter_tracking_number(self, tracking):
+        field = self.wait.until(EC.element_to_be_clickable(self.TRACKING_NUMBER_INPUT))
+        field.click()
+        field.send_keys(tracking)
+
+    def enter_additional_notes(self, notes):
+        field = self.wait.until(EC.element_to_be_clickable(self.ADDITIONAL_NOTES_INPUT))
+        field.click()
+        field.send_keys(notes)
+
+    def click_mark_as_shipped(self):
+        self.wait.until(EC.element_to_be_clickable(self.MARK_AS_SHIPPED)).click()
+
+    def click_update_delivery_status(self):
+        self.wait.until(EC.element_to_be_clickable(self.UPDATE_DELIVERY_STATUS)).click()
+
+    def click_mark_as_delivered(self):
+        self.wait.until(EC.element_to_be_clickable(self.MARK_AS_DELIVERED)).click()
+
+    def click_cancel_all(self):
+        self.wait.until(EC.element_to_be_clickable(self.CANCEL_ALL)).click()
+
+    def click_cancel(self):
+        self.wait.until(EC.element_to_be_clickable(self.CANCEL_BUTTON)).click()
+
+    def enter_cancel_reason(self, reason):
+        field = self.wait.until(EC.element_to_be_clickable(self.CANCEL_REASON_INPUT))
+        field.click()
+        field.send_keys(reason)
+
+    def click_done(self):
+        self.wait.until(EC.element_to_be_clickable(self.DONE_BUTTON)).click()
+
+    def click_account_balance(self):
+        self.wait.until(EC.element_to_be_clickable(self.ACCOUNT_BALANCE)).click()
+
+    def enter_send_amount(self, amount):
+        field = self.wait.until(EC.element_to_be_clickable(self.SEND_NOW_INPUT))
+        field.click()
+        field.send_keys(amount)
+
+    def click_send_to_primary_account(self):
+        self.wait.until(EC.element_to_be_clickable(self.SEND_TO_PRIMARY_ACCOUNT)).click()

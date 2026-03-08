@@ -397,3 +397,239 @@ def test_TC_STORE_003_create_product(driver):
     )
 
     return test_result
+
+def test_TC_STORE_004_order_delivery_lifecycle(driver):
+    """
+    Test Case ID: TC_STORE_004
+    Title: Order Delivery Lifecycle
+
+    Objective:
+    To verify that a store owner can successfully confirm an order,
+    ship the order, and mark it as delivered.
+
+    Test Steps:
+    Test Steps:
+    1. Click on All Orders.
+    2. Click on Confirm All button.
+    3. Click on Confirm.
+    4. Click on Start Shipping All.
+    5. Click on Ship.
+    6. Click on Logistics Partner dropdown and select 4PX.
+    7. Enter Tracking Number as test.
+    8. Enter Additional Notes as test.
+    9. Click on Mark as Shipped.
+    10. Click on Update Delivery Status.
+    11. Click on Mark as Delivered.
+
+    Expected Result:
+    Order is confirmed, shipped and delivered successfully.
+    """
+
+    test_result = TestResult(
+        test_id="TC_STORE_004",
+        title="Order Delivery Lifecycle",
+        page_name="store_page"
+    )
+
+    store_page = StorePage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on All Orders",
+        store_page.click_all_orders
+    )
+
+    # executor.step(
+    #     "Click on Waiting for Confirmation",
+    #     store_page.click_waiting_for_confirmation_order
+    # )
+
+    # executor.step(
+    #     "Click on Order",
+    #     store_page.click_order_item_delivery
+    # )
+
+    executor.step(
+        "Click on Confirm All button",
+        store_page.click_confirm_all
+    )
+
+    executor.step(
+        "Click on Confirm",
+        store_page.click_confirm
+    )
+
+    executor.step(
+        "Click on All tab",
+        store_page.click_all_tab
+    )
+
+    executor.step(
+        "Click on Start Shipping All",
+        store_page.click_start_shipping_all
+    )
+
+    executor.step(
+        "Click on Ship",
+        store_page.click_ship
+    )
+
+    executor.step(
+        "Click on Logistics Partner dropdown and select 4PX",
+        store_page.select_logistics_partner
+    )
+
+    executor.step(
+        "Enter Tracking Number as test",
+        lambda: store_page.enter_tracking_number("test")
+    )
+
+    executor.step(
+        "Enter Additional Notes as test",
+        lambda: store_page.enter_additional_notes("test")
+    )
+
+    executor.step(
+        "Click on Mark as Shipped",
+        store_page.click_mark_as_shipped
+    )
+
+    executor.step(
+        "Click on Update Delivery Status",
+        store_page.click_update_delivery_status
+    )
+
+    executor.step(
+        "Click on Mark as Delivered",
+        store_page.click_mark_as_delivered
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result
+
+def test_TC_STORE_005_cancel_order(driver):
+    """
+    Test Case ID: TC_STORE_005
+    Title: Cancel Order
+
+    Objective:
+    To verify that a store owner can successfully cancel an order
+    by providing a cancellation reason.
+
+    Test Steps:
+    1. Click on All Orders.
+    2. Click on Cancel All button.
+    3. Click on Cancel.
+    4. Enter Cancel Reason as test.
+    5. Click on Done button.
+
+    Expected Result:
+    Order is cancelled successfully.
+    """
+
+    test_result = TestResult(
+        test_id="TC_STORE_005",
+        title="Cancel Order",
+        page_name="store_page"
+    )
+
+    store_page = StorePage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on All Orders",
+        store_page.click_all_orders
+    )
+
+    executor.step(
+        "Click on Cancel All button",
+        store_page.click_cancel_all
+    )
+
+    executor.step(
+        "Click on Cancel",
+        store_page.click_cancel
+    )
+
+    executor.step(
+        "Enter Cancel Reason as test",
+        lambda: store_page.enter_cancel_reason("test")
+    )
+
+    executor.step(
+        "Click on Done button",
+        store_page.click_done
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result
+
+
+def test_TC_STORE_006_send_balance_to_bank(driver):
+    """
+    Test Case ID: TC_STORE_006
+    Title: Send Balance to Bank Account
+
+    Objective:
+    To verify that a store owner can successfully send their
+    account balance to their primary bank account.
+
+    Test Steps:
+    1. Click on Account Balance button.
+    2. Enter 10 in Send Now input field.
+    3. Click on Send 10 to Primary Account button.
+
+    Expected Result:
+    Amount is successfully sent to the primary bank account.
+    """
+
+    test_result = TestResult(
+        test_id="TC_STORE_006",
+        title="Send Balance to Bank Account",
+        page_name="store_page"
+    )
+
+    store_page = StorePage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on Account Balance button",
+        store_page.click_account_balance
+    )
+
+    executor.step(
+        "Enter 10 in Send Now input field",
+        lambda: store_page.enter_send_amount("10")
+    )
+
+    executor.step(
+        "Click on Send 10 to Primary Account button",
+        store_page.click_send_to_primary_account
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result

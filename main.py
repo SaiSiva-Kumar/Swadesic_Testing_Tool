@@ -28,7 +28,10 @@ from modules.POST.test_post import (
 from modules.Store.test_store import (
     test_TC_PRODUCT_001_create_store,
     test_TC_STORE_002_store_verification,
-    test_TC_STORE_003_create_product
+    test_TC_STORE_003_create_product,
+    test_TC_STORE_004_order_delivery_lifecycle,
+    test_TC_STORE_005_cancel_order,
+    test_TC_STORE_006_send_balance_to_bank
 )
 
 from modules.Product.test_product import (
@@ -81,6 +84,9 @@ MODULE_REGISTRY = {
             {"fn": test_TC_PRODUCT_001_create_store, "setup": None},
             {"fn": test_TC_STORE_002_store_verification, "setup": None},
             {"fn": test_TC_STORE_003_create_product, "setup": None},
+            {"fn": test_TC_STORE_004_order_delivery_lifecycle, "setup": None},
+            {"fn": test_TC_STORE_005_cancel_order, "setup": None},
+            {"fn": test_TC_STORE_006_send_balance_to_bank, "setup": None},
         ]
     },
     "4": {
