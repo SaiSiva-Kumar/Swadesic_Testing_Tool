@@ -34,6 +34,12 @@ from modules.Store.test_store import (
     test_TC_STORE_006_send_balance_to_bank
 )
 
+from modules.Store.Settings.test_store_settings import (
+    test_TC_STORE_SETTINGS_001_update_store_profile,
+    test_TC_STORE_SETTINGS_002_update_fulfillment_settings,
+    test_TC_STORE_SETTINGS_003_update_return_and_refund_settings
+)
+
 from modules.Product.test_product import (
     test_TC_PURCHASE_001_purchase_product_via_phonepe,
     test_TC_PURCHASE_002_cancel_product
@@ -128,6 +134,14 @@ MODULE_REGISTRY = {
             {"fn": test_TC_USERACTIVITY_004_save_and_repost_user_post, "setup": None}
         ]
     },
+    "9": {
+        "name": "Store Settings",
+        "tests": [
+            {"fn": test_TC_STORE_SETTINGS_001_update_store_profile, "setup": None},
+            {"fn": test_TC_STORE_SETTINGS_002_update_fulfillment_settings, "setup": None},
+            {"fn": test_TC_STORE_SETTINGS_003_update_return_and_refund_settings, "setup": None}
+        ]
+    }
 }
 # ─────────────────────────────────────────────
 
