@@ -5,3 +5,4 @@ reports/*
 screenshots/*
 !screenshots/.gitkeep
 request.py
+.gitignore
