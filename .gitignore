@@ -1,8 +1,0 @@
-info.txt
-venv
-reports/*
-!reports/.gitkeep
-screenshots/*
-!screenshots/.gitkeep
-request.py
-.gitignore
