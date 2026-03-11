@@ -35,6 +35,20 @@ class UserActivityPage:
     AppiumBy.XPATH, "//android.view.View[@content-desc=\"Post with author\"]/android.widget.ImageView[3]")
     SAVED_BUTTON = (
     AppiumBy.XPATH, "//android.view.View[@content-desc=\"Post with author\"]/android.widget.ImageView[4]")
+    SWITCH_ACCOUNTS = (AppiumBy.ACCESSIBILITY_ID, "Switch accounts")
+    ACCOUNT_TO_SWITCH = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().description(\"test_update_2\nArt and Craft Supplies\")")
+    SUGGEST_A_FEATURE = (AppiumBy.ACCESSIBILITY_ID, "Suggest a feature")
+    CATEGORY_DROPDOWN = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(18)")
+    CATEGORY_SEARCH_ICON = (AppiumBy.CLASS_NAME, "android.widget.ImageView")
+    CATEGORY_SEARCH_INPUT = (AppiumBy.CLASS_NAME, "android.widget.ImageView")
+    ADD_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Add")
+    TITLE_INPUT = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(0)")
+    DESCRIPTION_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(1)")
+    SUBMIT_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Submit")
+    SUGGEST_BACK_BUTTON = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(8)")
 
     def __init__(self, driver):
         self.driver = driver
@@ -107,3 +121,36 @@ class UserActivityPage:
 
     def click_saved(self):
         self.wait.until(EC.element_to_be_clickable(self.SAVED_BUTTON)).click()
+
+    def click_switch_accounts(self):
+        self.wait.until(EC.element_to_be_clickable(self.SWITCH_ACCOUNTS)).click()
+
+    def click_account(self):
+        self.wait.until(EC.element_to_be_clickable(self.ACCOUNT_TO_SWITCH)).click()
+
+    def click_suggest_a_feature(self):
+        self.wait.until(EC.element_to_be_clickable(self.SUGGEST_A_FEATURE)).click()
+
+    def select_category(self, text):
+        self.wait.until(EC.element_to_be_clickable(self.CATEGORY_DROPDOWN)).click()
+        self.wait.until(EC.element_to_be_clickable(self.CATEGORY_SEARCH_ICON)).click()
+        field = self.wait.until(EC.element_to_be_clickable(self.CATEGORY_SEARCH_INPUT))
+        field.click()
+        field.send_keys(text)
+        self.wait.until(EC.element_to_be_clickable(self.ADD_BUTTON)).click()
+
+    def enter_title(self, text):
+        field = self.wait.until(EC.element_to_be_clickable(self.TITLE_INPUT))
+        field.click()
+        field.send_keys(text)
+
+    def enter_description(self, text):
+        field = self.wait.until(EC.element_to_be_clickable(self.DESCRIPTION_INPUT))
+        field.click()
+        field.send_keys(text)
+
+    def click_submit(self):
+        self.wait.until(EC.element_to_be_clickable(self.SUBMIT_BUTTON)).click()
+
+    def click_suggest_back_button(self):
+        self.wait.until(EC.element_to_be_clickable(self.SUGGEST_BACK_BUTTON)).click()

@@ -275,3 +275,120 @@ def test_TC_USERACTIVITY_004_save_and_repost_user_post(driver):
     )
 
     return test_result
+
+def test_TC_USERACTIVITY_005_switch_accounts(driver):
+    """
+    Test Case ID: TC_USERACTIVITY_005
+    Title: Switch Accounts
+
+    Objective:
+    To verify that a user can successfully switch between accounts.
+
+    Test Steps:
+    1. Click on Switch Accounts.
+    2. Click on required account to switch to.
+
+    Expected Result:
+    Account is switched successfully.
+    """
+
+    test_result = TestResult(
+        test_id="TC_USERACTIVITY_005",
+        title="Switch Accounts",
+        page_name="userActivity_page"
+    )
+
+    user_activity_page = UserActivityPage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on Switch Accounts",
+        user_activity_page.click_switch_accounts
+    )
+
+    executor.step(
+        "Click on required account to switch to",
+        user_activity_page.click_account
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result
+
+def test_TC_USERACTIVITY_006_suggest_a_feature(driver):
+    """
+    Test Case ID: TC_USERACTIVITY_006
+    Title: Suggest a Feature
+
+    Objective:
+    To verify that a user can successfully submit a feature
+    suggestion by providing category, title and description.
+
+    Test Steps:
+    1. Click on Suggest a Feature.
+    2. Click on Category dropdown and provide test as input and click Add.
+    3. Enter Title as test.
+    4. Enter Description as test.
+    5. Click on Submit button.
+    6. Click on Back button.
+
+    Expected Result:
+    Feature suggestion is submitted successfully.
+    """
+
+    test_result = TestResult(
+        test_id="TC_USERACTIVITY_006",
+        title="Suggest a Feature",
+        page_name="userActivity_page"
+    )
+
+    user_activity_page = UserActivityPage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on Suggest a Feature",
+        user_activity_page.click_suggest_a_feature
+    )
+
+    executor.step(
+        "Click on Category dropdown and provide test as input and click Add",
+        lambda: user_activity_page.select_category("test")
+    )
+
+    executor.step(
+        "Enter Title as test",
+        lambda: user_activity_page.enter_title("test")
+    )
+
+    executor.step(
+        "Enter Description as test",
+        lambda: user_activity_page.enter_description("test")
+    )
+
+    executor.step(
+        "Click on Submit button",
+        user_activity_page.click_submit
+    )
+
+    executor.step(
+        "Click on Back button",
+        user_activity_page.click_suggest_back_button
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result
