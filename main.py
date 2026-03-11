@@ -67,7 +67,8 @@ from modules.UserActivity.test_userActivity import (
     test_TC_USERACTIVITY_003_app_and_security_functionality,
     test_TC_USERACTIVITY_004_save_and_repost_user_post,
     test_TC_USERACTIVITY_005_switch_accounts,
-    test_TC_USERACTIVITY_006_suggest_a_feature
+    test_TC_USERACTIVITY_006_suggest_a_feature,
+    test_TC_USERACTIVITY_007_customer_support
 )
 
 
@@ -136,6 +137,7 @@ MODULE_REGISTRY = {
             {"fn": test_TC_USERACTIVITY_004_save_and_repost_user_post, "setup": None},
             {"fn": test_TC_USERACTIVITY_005_switch_accounts, "setup": None},
             {"fn": test_TC_USERACTIVITY_006_suggest_a_feature, "setup": None},
+            {"fn": test_TC_USERACTIVITY_007_customer_support, "setup": None}
         ]
     },
     "9": {

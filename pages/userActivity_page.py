@@ -49,6 +49,20 @@ class UserActivityPage:
     SUBMIT_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Submit")
     SUGGEST_BACK_BUTTON = (
     AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(8)")
+    CUSTOMER_SUPPORT = (AppiumBy.ACCESSIBILITY_ID, "Customer Support")
+    SUPPORT_CATEGORY_DROPDOWN = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(18)")
+    SUPPORT_CATEGORY_SEARCH_ICON = (AppiumBy.CLASS_NAME, "android.widget.ImageView")
+    SUPPORT_CATEGORY_SEARCH_INPUT = (AppiumBy.CLASS_NAME, "android.widget.ImageView")
+    SUPPORT_TARGET_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(0)")
+    SUPPORT_TITLE_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(1)")
+    SUPPORT_DESCRIPTION_INPUT = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.EditText\").instance(2)")
+    SUPPORT_SUBMIT_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Submit")
+    SUPPORT_BACK_BUTTON = (
+    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(8)")
 
     def __init__(self, driver):
         self.driver = driver
@@ -154,3 +168,36 @@ class UserActivityPage:
 
     def click_suggest_back_button(self):
         self.wait.until(EC.element_to_be_clickable(self.SUGGEST_BACK_BUTTON)).click()
+
+    def click_customer_support(self):
+        self.wait.until(EC.element_to_be_clickable(self.CUSTOMER_SUPPORT)).click()
+
+    def select_support_category(self, text):
+        self.wait.until(EC.element_to_be_clickable(self.SUPPORT_CATEGORY_DROPDOWN)).click()
+        self.wait.until(EC.element_to_be_clickable(self.SUPPORT_CATEGORY_SEARCH_ICON)).click()
+        field = self.wait.until(EC.element_to_be_clickable(self.SUPPORT_CATEGORY_SEARCH_INPUT))
+        field.click()
+        field.send_keys(text)
+        self.wait.until(EC.element_to_be_clickable(self.ADD_BUTTON)).click()
+
+    def enter_support_target(self, text):
+        field = self.wait.until(EC.element_to_be_clickable(self.SUPPORT_TARGET_INPUT))
+        field.click()
+        field.send_keys(text)
+
+    def enter_support_title(self, text):
+        self.wait.until(EC.element_to_be_clickable(self.SUPPORT_TITLE_INPUT)).click()
+        field = self.wait.until(EC.element_to_be_clickable(self.SUPPORT_TITLE_INPUT))
+        field.click()
+        field.send_keys(text)
+
+    def enter_support_description(self, text):
+        self.wait.until(EC.element_to_be_clickable(self.SUPPORT_DESCRIPTION_INPUT)).click()
+        field = self.wait.until(EC.element_to_be_clickable(self.SUPPORT_TITLE_INPUT))
+        field.click()
+        field.send_keys(text)
+    def click_support_submit(self):
+        self.wait.until(EC.element_to_be_clickable(self.SUPPORT_SUBMIT_BUTTON)).click()
+
+    def click_support_back_button(self):
+        self.wait.until(EC.element_to_be_clickable(self.SUPPORT_BACK_BUTTON)).click()

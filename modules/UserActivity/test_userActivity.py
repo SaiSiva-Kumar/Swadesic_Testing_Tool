@@ -392,3 +392,81 @@ def test_TC_USERACTIVITY_006_suggest_a_feature(driver):
     )
 
     return test_result
+
+def test_TC_USERACTIVITY_007_customer_support(driver):
+    """
+    Test Case ID: TC_USERACTIVITY_007
+    Title: Customer Support Functionality
+
+    Objective:
+    To verify that a user can successfully submit a customer
+    support request by providing category, target, title
+    and description.
+
+    Test Steps:
+    1. Click on Customer Support.
+    2. Click on Category dropdown and provide test as input and click Add.
+    3. Enter Target as test.
+    4. Enter Title as test.
+    5. Enter Description as test.
+    6. Click on Submit button.
+    7. Click on Back button.
+
+    Expected Result:
+    Customer support request is submitted successfully.
+    """
+
+    test_result = TestResult(
+        test_id="TC_USERACTIVITY_007",
+        title="Customer Support Functionality",
+        page_name="userActivity_page"
+    )
+
+    user_activity_page = UserActivityPage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on Customer Support",
+        user_activity_page.click_customer_support
+    )
+
+    executor.step(
+        "Click on Category dropdown and provide test as input and click Add",
+        lambda: user_activity_page.select_support_category("test")
+    )
+
+    executor.step(
+        "Enter Target as test",
+        lambda: user_activity_page.enter_support_target("test")
+    )
+
+    executor.step(
+        "Enter Title as test",
+        lambda: user_activity_page.enter_support_title("test")
+    )
+
+    executor.step(
+        "Enter Description as test",
+        lambda: user_activity_page.enter_support_description("test")
+    )
+
+    executor.step(
+        "Click on Submit button",
+        user_activity_page.click_support_submit
+    )
+
+    executor.step(
+        "Click on Back button",
+        user_activity_page.click_support_back_button
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result
