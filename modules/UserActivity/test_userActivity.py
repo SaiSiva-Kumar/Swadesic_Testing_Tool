@@ -1,3 +1,5 @@
+import time
+
 from pages.userActivity_page import UserActivityPage
 from reporting.result_models import TestResult
 from reporting.step_executor import StepExecutor
@@ -405,7 +407,7 @@ def test_TC_USERACTIVITY_007_customer_support(driver):
 
     Test Steps:
     1. Click on Customer Support.
-    2. Click on Category dropdown and provide test as input and click Add.
+    2. Click on Category dropdown and select Accounts.
     3. Enter Target as test.
     4. Enter Title as test.
     5. Enter Description as test.
@@ -431,13 +433,13 @@ def test_TC_USERACTIVITY_007_customer_support(driver):
     )
 
     executor.step(
-        "Click on Category dropdown and provide test as input and click Add",
-        lambda: user_activity_page.select_support_category("test")
+        "Enter Target as test",
+        lambda: user_activity_page.enter_support_target("test")
     )
 
     executor.step(
-        "Enter Target as test",
-        lambda: user_activity_page.enter_support_target("test")
+        "Click on Category dropdown and select Accounts",
+        user_activity_page.select_support_category
     )
 
     executor.step(
@@ -458,6 +460,137 @@ def test_TC_USERACTIVITY_007_customer_support(driver):
     executor.step(
         "Click on Back button",
         user_activity_page.click_support_back_button
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result
+
+def test_TC_USERACTIVITY_008_request_a_feature(driver):
+    """
+    Test Case ID: TC_USERACTIVITY_008
+    Title: Request a Feature Functionality
+
+    Objective:
+    To verify that a user can successfully submit a feature
+    request by providing category, title and description.
+
+    Test Steps:
+    1. Click on Request a Feature.
+    2. Click on Category dropdown and choose Accounts.
+    3. Enter Title as test.
+    4. Enter Description as test.
+    5. Click on Submit button.
+    6. Click on Back button.
+
+    Expected Result:
+    Feature request is submitted successfully.
+    """
+
+    test_result = TestResult(
+        test_id="TC_USERACTIVITY_008",
+        title="Request a Feature Functionality",
+        page_name="userActivity_page"
+    )
+
+    user_activity_page = UserActivityPage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on Request a Feature",
+        user_activity_page.click_request_a_feature
+    )
+
+    executor.step(
+        "Click on Category dropdown and choose Accounts",
+        user_activity_page.select_request_category
+    )
+
+    executor.step(
+        "Enter Title as test",
+        lambda: user_activity_page.enter_request_title("test")
+    )
+
+    executor.step(
+        "Enter Description as test",
+        lambda: user_activity_page.enter_request_description("test")
+    )
+
+    executor.step(
+        "Click on Submit button",
+        user_activity_page.click_request_submit
+    )
+
+    executor.step(
+        "Click on Back button",
+        user_activity_page.click_request_back_button
+    )
+
+    if executor.failed:
+        test_result.overall_status = "FAIL"
+    else:
+        test_result.overall_status = "PASS"
+
+    test_result.execution_time = round(
+        sum(step.execution_time for step in test_result.steps), 2
+    )
+
+    return test_result
+
+
+def test_TC_USERACTIVITY_009_find_friends(driver):
+    """
+    Test Case ID: TC_USERACTIVITY_009
+    Title: Find Friends Functionality
+
+    Objective:
+    To verify that a user can successfully find friends by
+    syncing contacts, following and supporting all, and undoing.
+
+    Test Steps:
+    1. Click on Find Friends.
+    2. Click on Sync button.
+    3. Click on Follow and Support All.
+    4. Click on Undo.
+
+    Expected Result:
+    Find friends functionality works as expected.
+    """
+
+    test_result = TestResult(
+        test_id="TC_USERACTIVITY_009",
+        title="Find Friends Functionality",
+        page_name="userActivity_page"
+    )
+
+    user_activity_page = UserActivityPage(driver)
+    executor = StepExecutor(driver, test_result)
+
+    executor.step(
+        "Click on Find Friends",
+        user_activity_page.click_find_friends
+    )
+
+    executor.step(
+        "Click on Sync button",
+        user_activity_page.click_sync
+    )
+
+    executor.step(
+        "Click on Follow and Support All",
+        user_activity_page.click_follow_and_support_all
+    )
+
+    executor.step(
+        "Click on Undo",
+        user_activity_page.click_undo
     )
 
     if executor.failed:
