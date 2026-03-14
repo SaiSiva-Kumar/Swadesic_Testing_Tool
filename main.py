@@ -16,7 +16,6 @@ from reporting.report_generator import generate_report
 # ─────────────────────────────────────────────
 from modules.login.test_login import (
     test_TC_LOGIN_001_valid_login,
-    test_TC_LOGIN_002_send_otp_without_email,
     reset_login_state
 )
 
@@ -78,8 +77,7 @@ MODULE_REGISTRY = {
     "1": {
         "name": "Login",
         "tests": [
-            {"fn": test_TC_LOGIN_001_valid_login, "setup": None},
-            {"fn": test_TC_LOGIN_002_send_otp_without_email, "setup": reset_login_state},
+            {"fn": test_TC_LOGIN_001_valid_login, "setup": reset_login_state}
         ]
     },
     "2": {

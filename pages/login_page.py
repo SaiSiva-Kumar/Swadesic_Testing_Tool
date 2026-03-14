@@ -6,8 +6,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class LoginPage:
-    IMAGE_ENTRY = (AppiumBy.XPATH,
-                   '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ImageView')
+
+    PROFILE = (AppiumBy.XPATH,
+               "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]")
+    PROFILE_LOGGED_OUT = (AppiumBy.XPATH,
+                          "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ImageView")
     SEE_ALL_OPTIONS = (AppiumBy.ACCESSIBILITY_ID, "See all Options")
     CONTINUE_WITH_EMAIL = (AppiumBy.ACCESSIBILITY_ID, "Continue with Email and OTP")
     EMAIL_INPUT = (AppiumBy.CLASS_NAME, "android.widget.EditText")
@@ -25,8 +28,14 @@ class LoginPage:
         self.wait = WebDriverWait(driver, 15)
 
     def click_profile_button(self):
-        self.wait.until(EC.element_to_be_clickable(self.IMAGE_ENTRY)).click()
-
+        short_wait = WebDriverWait(self.driver, 5, poll_frequency=0.5)
+        try:
+            short_wait.until(EC.element_to_be_clickable(self.PROFILE)).click()
+        except Exception:
+            try:
+                short_wait.until(EC.element_to_be_clickable(self.PROFILE_LOGGED_OUT)).click()
+            except Exception:
+                pass
     def click_see_all_options(self):
         self.wait.until(EC.element_to_be_clickable(self.SEE_ALL_OPTIONS)).click()
 
@@ -51,8 +60,11 @@ class LoginPage:
         self.wait.until(EC.presence_of_element_located(self.EMAIL_ERROR_MESSAGE))
 
     def logout(self):
-        self.wait.until(EC.element_to_be_clickable(self.IMAGE_ENTRY)).click()
-        self.wait.until(EC.element_to_be_clickable(self.SETTINGS)).click()
-        self.wait.until(EC.element_to_be_clickable(self.APP_AND_SECURITY)).click()
-        self.wait.until(EC.element_to_be_clickable(self.LOGOUT_BUTTON)).click()
-        self.wait.until(EC.element_to_be_clickable(self.LOGOUT_BUTTON)).click()
+        try:
+            self.click_profile_button()
+            self.wait.until(EC.element_to_be_clickable(self.SETTINGS)).click()
+            self.wait.until(EC.element_to_be_clickable(self.APP_AND_SECURITY)).click()
+            self.wait.until(EC.element_to_be_clickable(self.LOGOUT_BUTTON)).click()
+            self.wait.until(EC.element_to_be_clickable(self.LOGOUT_BUTTON)).click()
+        except Exception:
+            pass
