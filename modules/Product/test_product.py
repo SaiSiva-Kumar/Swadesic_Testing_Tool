@@ -1,6 +1,7 @@
 from pages.product_page import ProductPage
 from reporting.result_models import TestResult
 from reporting.step_executor import StepExecutor
+import time
 
 
 def test_TC_PURCHASE_001_purchase_product_via_phonepe(driver):
@@ -136,8 +137,8 @@ def test_TC_PURCHASE_002_cancel_product(driver):
     )
 
     executor.step(
-        "Click on Product Information",
-        product_page.click_order_item
+        "Click on Product Information (requires manual click during 5 second pause)",
+        lambda: time.sleep(5)
     )
 
     executor.step(

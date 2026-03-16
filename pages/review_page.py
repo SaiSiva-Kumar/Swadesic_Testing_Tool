@@ -8,7 +8,8 @@ def get_update_name():
 
 class ReviewPage:
 
-    PROFILE_BUTTON = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(29)")
+    PROFILE_BUTTON = (AppiumBy.XPATH,
+                      "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]")
     CREATE_REVIEW_PAGE = (AppiumBy.ACCESSIBILITY_ID, "Create review page")
     GET_STARTED = (AppiumBy.ACCESSIBILITY_ID, "Get Started")
     IMAGES_TAB = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.ImageView\").instance(0)")

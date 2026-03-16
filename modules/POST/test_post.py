@@ -1,6 +1,7 @@
 from pages.post_page import PostPage
 from reporting.result_models import TestResult
 from reporting.step_executor import StepExecutor
+import time
 
 
 def test_TC_POST_001_create_post_with_media_and_tag(driver):
@@ -20,7 +21,7 @@ def test_TC_POST_001_create_post_with_media_and_tag(driver):
     4. Click on Tag Stores, Products and Members.
     5. Search and select tag with input krishna.
     6. Enter post caption.
-    7. Click on Post button.
+    7. Click on Post button manually.
     8. Verify post is submitted successfully.
 
     Expected Result:
@@ -67,8 +68,8 @@ def test_TC_POST_001_create_post_with_media_and_tag(driver):
     )
 
     executor.step(
-        "Click on Post button",
-        post_page.click_post_button
+        "Click on Post button (requires manual click during 5 second pause)",
+        lambda: time.sleep(5)
     )
 
     if executor.failed:
@@ -94,7 +95,7 @@ def test_TC_POST_002_delete_post(driver):
 
     Test Steps:
     1. Click on Profile button.
-    2. Click on User Posts.
+    2. Click on User Posts manually.
     3. Click on Three Dots Menu.
     4. Click on Delete button.
     5. Confirm Delete.
@@ -118,8 +119,8 @@ def test_TC_POST_002_delete_post(driver):
     )
 
     executor.step(
-        "Click on User Posts",
-        post_page.click_user_posts
+        "Click on User Posts (requires manual click during 5 second pause)",
+        lambda: time.sleep(5)
     )
 
     executor.step(

@@ -4,21 +4,21 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class ProductPage:
-
-    SEARCH_BUTTON = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.ImageView\").instance(7)")
+    SEARCH_BUTTON = (AppiumBy.XPATH,
+                     "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]")
     PRODUCTS_TAB = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().description(\"Products\nTab 2 of 2\")")
-    PRODUCT_ITEM = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().description(\"Covers Covers\n₹ 200.00\n₹ 250.00\")")
+    PRODUCT_ITEM = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.view.View\").instance(17)")
     BUY_NOW = (AppiumBy.ACCESSIBILITY_ID, "Buy now")
     CONTINUE = (AppiumBy.ACCESSIBILITY_ID, "Continue")
     SELECT_DELIVERY_ADDRESS = (AppiumBy.ACCESSIBILITY_ID, "Select Delivery Address & Payment")
     SECURE_CHECKOUT = (AppiumBy.ACCESSIBILITY_ID, "Secure checkout")
     PHONEPE = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().text(\"PhonePe PhonePe\")")
     GO_BACK = (AppiumBy.ID, "android:id/button2")
-    PROFILE_BUTTON = (
-    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.ImageView\").instance(10)")
+    PROFILE_BUTTON = (AppiumBy.XPATH,
+                      "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]")
     MY_ORDERS = (AppiumBy.ACCESSIBILITY_ID, "My orders")
-    ORDER_ITEM = (AppiumBy.ANDROID_UIAUTOMATOR,
-                  "new UiSelector().description(\" pubg\n₹205\n28-02-2026 11:02 PM\n1 item\n1 waiting confirmation\")")
+    # ORDER_ITEM = (AppiumBy.ANDROID_UIAUTOMATOR,
+    #               "new UiSelector().description(\" pubg\n₹205\n28-02-2026 11:02 PM\n1 item\n1 waiting confirmation\")")
     WAITING_FOR_CONFIRMATION = (
     AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().description(\"Waiting for confirmation\n# 1 suborder\")")
     CANCEL_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Cancel")
@@ -62,8 +62,8 @@ class ProductPage:
     def click_my_orders(self):
         self.wait.until(EC.element_to_be_clickable(self.MY_ORDERS)).click()
 
-    def click_order_item(self):
-        self.wait.until(EC.element_to_be_clickable(self.ORDER_ITEM)).click()
+    # def click_order_item(self):
+    #     self.wait.until(EC.element_to_be_clickable(self.ORDER_ITEM)).click()
 
     def click_waiting_for_confirmation(self):
         self.wait.until(EC.element_to_be_clickable(self.WAITING_FOR_CONFIRMATION)).click()

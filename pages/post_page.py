@@ -23,12 +23,12 @@ class PostPage:
     TAG_SEARCH_INPUT = (AppiumBy.CLASS_NAME, "android.widget.ImageView")
     TAG_RESULT = (AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().description(\"krishna_k\nKrishna Kanth Krishna Kanth\nUser\")")
     CAPTION_INPUT = (AppiumBy.CLASS_NAME, "android.widget.EditText")
-    POST_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Post")
-    PROFILE_BUTTON = (
-    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.ImageView\").instance(10)")
-    USER_POSTS = (AppiumBy.ACCESSIBILITY_ID, "User Posts")
-    THREE_DOTS_MENU = (
-    AppiumBy.ANDROID_UIAUTOMATOR, "new UiSelector().className(\"android.widget.ImageView\").instance(5)")
+    # POST_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Post")
+    PROFILE_BUTTON = (AppiumBy.XPATH,
+                      "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]")
+    # USER_POSTS = (AppiumBy.ACCESSIBILITY_ID, "User Posts")
+    THREE_DOTS_MENU = (AppiumBy.XPATH,
+                       "//android.view.View[@content-desc=\"Posts\"]/android.view.View/android.view.View/android.view.View/android.widget.ImageView")
     DELETE_BUTTON = (AppiumBy.ACCESSIBILITY_ID, "Delete")
 
     def __init__(self, driver):
@@ -70,14 +70,11 @@ class PostPage:
         field.click()
         field.send_keys(text)
 
-    def click_post_button(self):
-        self.wait.until(EC.element_to_be_clickable(self.POST_BUTTON)).click()
-
     def click_profile_button(self):
         self.wait.until(EC.element_to_be_clickable(self.PROFILE_BUTTON)).click()
 
-    def click_user_posts(self):
-        self.wait.until(EC.element_to_be_clickable(self.USER_POSTS)).click()
+    # def click_user_posts(self):
+    #     self.wait.until(EC.element_to_be_clickable(self.USER_POSTS)).click()
 
     def click_three_dots_menu(self):
         self.wait.until(EC.element_to_be_clickable(self.THREE_DOTS_MENU)).click()
