@@ -1,13 +1,20 @@
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
+
+def search(driver):
+    print("function invoke")
+    search_page = SearchPage(driver)
+    search_page.click_search_button()
+    search_page.enter_search_text("krishna")
+    time.sleep(5)
 
 
 class SearchPage:
-
     SEARCH_BUTTON = (
-        AppiumBy.ANDROID_UIAUTOMATOR,
-        "new UiSelector().className(\"android.widget.ImageView\").instance(7)"
+        AppiumBy.XPATH,
+        "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]"
     )
 
     SEARCH_INPUT = (

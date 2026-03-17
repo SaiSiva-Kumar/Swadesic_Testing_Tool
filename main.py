@@ -52,8 +52,9 @@ from modules.Search.test_search import (
     test_TC_SEARCH_001_search_user_and_follow,
     test_TC_SEARCH_002_ask_question_on_product,
     test_TC_SEARCH_003_support_store,
-    test_TC_SEARCH_004_comment_on_post
+    test_TC_SEARCH_004_comment_on_post,
 )
+from pages.search_page import search
 
 from modules.Review.test_review import (
     test_TC_REVIEW_001_create_review_page,
@@ -115,10 +116,10 @@ MODULE_REGISTRY = {
     "6": {
          "name": "Search",
          "tests": [
-              {"fn": test_TC_SEARCH_001_search_user_and_follow, "setup": None},
-              {"fn": test_TC_SEARCH_002_ask_question_on_product, "setup": None},
-              {"fn": test_TC_SEARCH_003_support_store, "setup": None},
-              {"fn": test_TC_SEARCH_004_comment_on_post, "setup": None}
+              {"fn": test_TC_SEARCH_001_search_user_and_follow, "setup": search},
+              {"fn": test_TC_SEARCH_002_ask_question_on_product, "setup": search},
+              {"fn": test_TC_SEARCH_003_support_store, "setup": search},
+              {"fn": test_TC_SEARCH_004_comment_on_post, "setup": search}
          ]
     },
     "7": {

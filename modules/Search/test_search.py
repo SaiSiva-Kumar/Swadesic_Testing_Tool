@@ -33,16 +33,6 @@ def test_TC_SEARCH_001_search_user_and_follow(driver):
     executor = StepExecutor(driver, test_result)
 
     executor.step(
-        "Click on Search button",
-        search_page.click_search_button
-    )
-
-    executor.step(
-        "Click on Search input field and provide name as krishna",
-        lambda: search_page.enter_search_text("krishna")
-    )
-
-    executor.step(
         "Click on People tab",
         search_page.click_people_tab
     )
